@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STI Symptom Checker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>STI Symptom Checker</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/education">Educational Resources</a></li>
+      <li><a href="/symptoms">Symptom Checker</a></li>
+      <li><a href="/quiz">Quiz</a></li>
+      <li><a href="/resources">Resources</a></li>
+    </ul>
+  </nav>
+
+  <form id="symptomForm">
+    <h2>Enter Your Symptoms:</h2>
+    <label for="symptoms">Please describe your symptoms:</label><br>
+    <textarea id="symptoms" rows="4" cols="50" required></textarea><br>
+    <button type="submit">Check Symptoms</button>
+  </form>
+
+  <div id="result"></div>
+
+ <script>
+  document.getElementById('symptomForm').onsubmit = function(event) {
+    event.preventDefault();
+    const symptoms = document.getElementById('symptoms').value.toLowerCase();
+    let message = '';
+
+    // Basic symptom checking logic
+    if (symptoms.includes('pain') || symptoms.includes('burning') || symptoms.includes('discharge')) {
+      message = 'It is recommended that you see a healthcare provider.';
+    } else if (symptoms.includes('rash') || symptoms.includes('sores') || symptoms.includes('blisters')) {
+      message = 'You should consult a healthcare provider for further evaluation.';
+    } else if (symptoms.includes('flu-like symptoms') || symptoms.includes('fever')) {
+      message = 'These symptoms may indicate an infection. Consider getting tested.';
+    } else if (symptoms.includes('itching') || symptoms.includes('irritation')) {
+      message = 'These symptoms can be caused by various conditions. Monitor your symptoms.';
+    } else {
+      message = 'Your symptoms do not appear to indicate a serious issue, but consult a healthcare provider if concerned.';
+    }
+
+    document.getElementById('result').innerHTML = `<h3>${message}</h3>`;
+  };
+</script>
+ 
+
+  <p><a href="/">Go back to Home</a></p>
+</body>
+</html>

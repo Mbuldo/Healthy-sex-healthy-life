@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STI Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>STI Awareness Quiz</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/education">Educational Resources</a></li>
+      <li><a href="/symptoms">Symptom Checker</a></li>
+      <li><a href="/quiz">Quiz</a></li>
+      <li><a href="/resources">Resources</a></li>
+    </ul>
+  </nav>
+
+  <form id="quizForm">
+    <h2>Test Your Knowledge!</h2>
+
+    <div>
+      <label>1. What is an STI?</label><br>
+      <input type="radio" name="question1" value="correct"> A sexually transmitted infection<br>
+      <input type="radio" name="question1" value="wrong"> A type of allergy<br>
+      <input type="radio" name="question1" value="wrong"> A skin condition<br>
+    </div>
+
+    <div>
+      <label>2. How can STIs be prevented?</label><br>
+      <input type="radio" name="question2" value="correct"> Using condoms<br>
+      <input type="radio" name="question2" value="wrong"> Drinking plenty of water<br>
+      <input type="radio" name="question2" value="wrong"> Avoiding spicy food<br>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('quizForm').onsubmit = function(event) {
+      event.preventDefault();
+      let score = 0;
+      const answers = [ 
+        document.querySelector('input[name="question1"]:checked'),
+        document.querySelector('input[name="question2"]:checked')
+      ];
+      if (answers[0] && answers[0].value === "correct") score++;
+      if (answers[1] && answers[1].value === "correct") score++;
+
+      document.getElementById('result').innerHTML = 
+        `<h3>Your Score: ${score} out of ${answers.length}</h3>`;
+    };
+  </script>
+
+  <p><a href="/">Go back to Home</a></p>
+</body>
+</html>
